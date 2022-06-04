@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AR Toy Store</title>
+        <meta name = "viewport" content = "width=device-width , user-scalable=no, minimum-scale = 1.0, maximum-scale = 1.0 "/>
+
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+        <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+       
+        <!-- SweetAlert -->
+        <script src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        
+        <!--Bootstrap-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+        <!-- Local StyleSheet -->
+        <link href="./style.css" rel="stylesheet"/>
+
+        <!--JS Files-->
+        <script src = "./js/addButtons.js"></script>
+        <script src = "./js/markerHandler.js"></script>
+
+    </head>
+
+    <body style = "margin : 0px; overflow: hidden;">
+
+        <a-scene embedded 
+        vr-mode-ui = "enabled : false"
+        arjs="sourceType: webcam; 
+        sourceWidth:1280; 
+        sourceHeight:960; 
+        displayWidth: 1280; 
+        displayHeight: 960;
+        debugUIEnabled: false;"
+        gesture-detector
+        create-buttons>
+
+       <!-- Camera -->
+    <a-entity camera></a-entity>
+    
+    
+    <a-assets>
+     <a-asset-item id = "toy-model" src = "./assets/toy/scene.gltf"></a-asset-item>
+    </a-assets>
+
+    <!--Pattern Marker-->
+    <a-marker id = "toy-marker"
+    type = "pattern"
+    url = "assets/toy_markers/pattern-toy.patt"
+    cursor = "rayOrigin : mouse"
+    marker-handler>
+
+    <a-entity id="toy-3D-model" position="-2 0 0" scale="4 4 1" rotation = "-90 0 0" 
+        gltf-model="#toy-model"
+        gesture-handler>
+      </a-entity>
+
+       <!-- Description -->
+
+       <a-plane position="0 0 0" width="2" height="1.5" rotation="-90 0 0">
+
+       <a-plane position="0 0.89 0.02" width="1.49" height="0.3" rotation="0 0 0" color="#F0C30F">
+        <a-entity position="0 0 0.1" rotation="0 0 0"
+        text = "font : monoid ; value : Hydraulic Crane ; color : black ; width : 2 ; height : 1.2 ; align : center">
+
+        </a-entity>
+
+        </a-plane>
+
+       <a-entity position="0 0 0.1" rotation="0 0 0" text = "font : monoid ; color : black ; align : center ; width : 2 ; 
+       value : PULL BACK AND GO : Friction powered\n crane truck toy, 360 degree rotation\n,left and right, machine can pull up\n & down, swing left & right. High\n Quality Material : FunBlast crane toy\n is made of 100% high-quality abs\n plastics and metal shove which is\n durable, light and non-toxic with\n strong crash resistance.\n\nAGE : 8-10 years\n\n">
+         
+       </a-entity>
+
+       </a-plane>
+
+    </a-marker>
+    
+    </a-scene>
+
+  <!-- Button Main Div -->
+  <div id = "button-div"></div>
+
+    </body>
+</html>
